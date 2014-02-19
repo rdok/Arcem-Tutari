@@ -11,6 +11,7 @@ Arcem-Tutari
     - Sky: Moving clouds, moon and sun.
     - Reflection of sky on water.
     - Custom world created. (ground, mountains)
+    - Animated Snow.
 ###Models
     - Hero: Ready made model from jmonkey libraries.
     - Enemies: Orcs like models from jmonkey libraries.
