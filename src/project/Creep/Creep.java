@@ -17,6 +17,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 import java.util.Random;
 import Main.Main;
+import com.jme3.animation.LoopMode;
 import java.util.ArrayList;
 
 /**
@@ -111,12 +112,12 @@ public class Creep extends Node {
     public void setAttacked() {
         lowerHealth();
         enableCreepIsAttacked();
-//        if (creepIsAlive()) {
-//            enableHeroPursuit();
-//        } else { // if creeep is alive
+        if (creepIsAlive()) {
+            enableHeroPursuit();
+        } else { 
 //            disableAllPursuit();
 //            mainClass.removePhysicalProp(this);
-//        }
+        }
     }
 
     private CharacterControl getCharacterControl() {
@@ -163,7 +164,10 @@ public class Creep extends Node {
         motionControl = new MotionEvent(this, path);
         motionControl.setSpeed(1f);
         motionControl.play();
-        // motionControl.
+
+//        channel.setAnim(CreepAnimControl.ID, 0.50f);
+//			channel.setLoopMode(LoopMode.Loop);
+//			channel.setSpeed(1f);
     }
 
     public Vector3f getPhysLoc() {

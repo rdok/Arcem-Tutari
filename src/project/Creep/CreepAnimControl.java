@@ -24,7 +24,7 @@ public class CreepAnimControl implements AnimEventListener {
     private final AnimChannel channelRunBase;
     private final AnimChannel channelRunTop;
     // possible movement of creep
-    private final String IDLE_BASE_ANIM = "IdleBase", IDLE_TOP_ANIM = "IdleTop";
+    public final String IDLE_BASE_ANIM = "IdleBase", IDLE_TOP_ANIM = "IdleTop";
     private final String ATTACK_SLICE_HORIZONTAL = "SliceHorizontal",
             ATTACK_SLICE_VERTICAL = "SliceVertical";
     private final String RUN_TOP_ANIM = "RunTop", RUN_BASE_ANIM = "RunBase";
@@ -72,6 +72,8 @@ public class CreepAnimControl implements AnimEventListener {
         } else if (!creep.isAlive()) { // kreep died
             //		System.out.println("creep.isAttacking(): dead!!");
             enableAnimDead();
+        } else {
+            enableAnimIdle();
         }
 
     }
@@ -96,7 +98,6 @@ public class CreepAnimControl implements AnimEventListener {
     }
 
     public void enableAnimationRun() {
-        System.out.println("tester");
         if (!isAnimationRunActive()) {
             channelRunBase.setAnim(RUN_BASE_ANIM, .5f);
             channelRunTop.setAnim(RUN_TOP_ANIM, .5f);
@@ -161,32 +162,40 @@ public class CreepAnimControl implements AnimEventListener {
     }
 
     public void onAnimChange(AnimControl control, AnimChannel channel, String animName) {
-//        System.out.println(animName);
-//        if(animName.equals(IDLE_BASE_ANIM) || )
-        //	channel_run_base.getControl().setEnabled(false);
-//		if (channel.getAnimationName().equals(IDLE_BASE_ANIM)) {
-//			channel.setAnim(IDLE_BASE_ANIM, 0.50f);
-//			channel.setLoopMode(LoopMode.Loop);
-//			channel.setSpeed(1f);
-//		}
-//		if (channel.getAnimationName().equals(DANCE_ANIM)) {
-//			channel.setAnim(DANCE_ANIM, 0.50f);
-//			channel.setLoopMode(LoopMode.Loop);
-//			channel.setSpeed(1f);
-//		}
-//		if (channel.getAnimationName().equals(STAND_UP_BACK_ANIM)) {
-//			System.out.println("onAnimChane ");
-//
-//			channel.setAnim(STAND_UP_BACK_ANIM, -0.50f);
-//			channel.setLoopMode(LoopMode.DontLoop);
-//			channel.setSpeed(1f);
-//
-//		}
-//		if (channel.getAnimationName().equals(STAND_UP_FRONT_ANIM)) {
-//			channel.setAnim(STAND_UP_FRONT_ANIM, 0.50f);
-//			channel.setLoopMode(LoopMode.Loop);
-//			channel.setSpeed(1f);
-//		}
+        System.out.println("anime name: " + animName);
+        if (animName.equals(IDLE_BASE_ANIM) || animName.equals(DANCE_ANIM)
+                || animName.equals(STAND_UP_BACK_ANIM) || animName.equals(STAND_UP_FRONT_ANIM)) {
+            channelRunBase.getControl().setEnabled(false);
+            try {
+                if (channel.getAnimationName().equals(IDLE_BASE_ANIM)) {
+                    channel.setAnim(IDLE_BASE_ANIM, 0.50f);
+                    channel.setLoopMode(LoopMode.Loop);
+                    channel.setSpeed(1f);
+                    return;
+                }
+                if (channel.getAnimationName().equals(DANCE_ANIM)) {
+                    channel.setAnim(DANCE_ANIM, 0.50f);
+                    channel.setLoopMode(LoopMode.Loop);
+                    channel.setSpeed(1f);
+                    return;
+                }
+                if (channel.getAnimationName().equals(STAND_UP_BACK_ANIM)) {
+                    channel.setAnim(STAND_UP_BACK_ANIM, -0.50f);
+                    channel.setLoopMode(LoopMode.DontLoop);
+                    channel.setSpeed(1f);
+                    return;
+                }
+                if (channel.getAnimationName().equals(STAND_UP_FRONT_ANIM)) {
+                    channel.setAnim(STAND_UP_FRONT_ANIM, 0.50f);
+                    channel.setLoopMode(LoopMode.Loop);
+                    channel.setSpeed(1f);
+                    return;
+                }
+
+            } catch (NullPointerException nPE) {
+                System.out.println(nPE.getMessage());
+            }
+        }
     }
 
     void heroAttacked() {

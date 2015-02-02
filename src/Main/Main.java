@@ -172,7 +172,7 @@ public class Main extends SimpleApplication {
             creepNode = createCreepNode();
             creepNodesList.add(creepNode);
             shootables.attachChild(creepNode);
-             creepNode.startSimplePath();
+            creepNode.startSimplePath();
             bulletAppState.getPhysicsSpace().add(creepNode);
         }
     }
