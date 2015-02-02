@@ -60,19 +60,19 @@ public class CreepAnimControl implements AnimEventListener {
 
     public void update(float tpf) {
 
-//        if (creep.isRunning() && !creep.isAttacking()) {
-//            enableAnimationRun();
-//        } else if (creep.isRunning() && creep.isAttacking()) {
-//            if (!isBaseAnimIdle()) { // verify that channel of feet idle is not null
-//                enableAnimIdle(); // stop moving feet.
-//            }
-//            if (!isAnimationFightActive()) { // if attack has not started
-//                enableAnimationFightRandom();
-//            }
-//        } else if (!creep.isAlive()) { // kreep died
-//            //		System.out.println("creep.isAttacking(): dead!!");
-//            enableAnimDead();
-//        }
+        if (creep.isRunning() && !creep.isAttacking()) {
+            enableAnimationRun();
+        } else if (creep.isRunning() && creep.isAttacking()) {
+            if (!isBaseAnimIdle()) { // verify that channel of feet idle is not null
+                enableAnimIdle(); // stop moving feet.
+            }
+            if (!isAnimationFightActive()) { // if attack has not started
+                enableAnimationFightRandom();
+            }
+        } else if (!creep.isAlive()) { // kreep died
+            //		System.out.println("creep.isAttacking(): dead!!");
+            enableAnimDead();
+        }
 
     }
 

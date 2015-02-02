@@ -146,12 +146,12 @@ public class Creep extends Node {
         path = new MotionPath();
 
         Vector3f creepLocation = getPhysLoc();
-//      Vector3f towerLocation = mainClass.getSceneNode().getCastleNode().getC
-//      towerLocation.setY(creepLocation.y);
-//      // float groundHeight = mainClass.getSceneNode().getRigBodControl().get
-//      path.addWayPoint(creepLocation);
-//      path.addWayPoint(towerLocation);
-        path.enableDebugShape(assetManager, rootNode);
+      Vector3f towerLocation = mainClass.getSceneNode().getCastleNode().getLastKnownLocCastle();
+      towerLocation.setY(creepLocation.y);
+      // float groundHeight = mainClass.getSceneNode().getRigBodControl().get
+      path.addWayPoint(creepLocation);
+      path.addWayPoint(towerLocation);
+//        path.enableDebugShape(assetManager, rootNode);
         path.setCurveTension(1.0f);
 
 

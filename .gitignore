@@ -6,5 +6,5 @@
 *.ear
 *.zip
 /nbproject/private/
-/build/
-/dist/
+/build/*
+/dist/*
